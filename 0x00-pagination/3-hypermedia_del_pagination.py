@@ -38,29 +38,29 @@ class Server:
                 i: dataset[i] for i in range(len(dataset))
             }
         return self.__indexed_dataset
-
+    
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
         Return a dictionary with hypermedia pagination information.
         """
-        assert (
-                isinstance(page, int) and page > 0
-              ), "Page must be a positive integer"
-        assert (
-                isinstance(page_size, int) and page_size > 0
-               ), "Page size must be a positive integer"
+    assert (
+            isinstance(index, int) and index > 0
+          ), "Index must be a positive integer"
+    assert (
+            isinstance(page_size, int) and page_size > 0
+           ), "Page size must be a positive integer"
 
-        indexed_dataset = self.indexed_dataset()
-        max_index = len(indexed_dataset) - 1
+    indexed_dataset = self.indexed_dataset()
+    max_index = len(indexed_dataset) - 1
 
-        if index is None or index < 0 or index > max_index:
-            index = 0
+    if index is None or index < 0 or index > max_index:
+        index = 0
 
-        next_index = min(index + page_size, max_index + 1)
+    next_index = min(index + page_size, max_index + 1)
 
-        return {
-            "index": index,
-            "next_index": next_index,
-            "page_size": page_size,
-            "data": [indexed_dataset[i] for i in range(index, next_index)]
-            }
+    return {
+        "index": index,
+        "next_index": next_index,
+        "page_size": page_size,
+        "data": [indexed_dataset[i] for i in range(index, next_index)]
+        }
