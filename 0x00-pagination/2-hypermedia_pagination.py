@@ -5,6 +5,7 @@ import csv
 import math
 from typing import List
 
+
 def index_range(page: int, page_size: int) -> tuple[int, int]:
     """
     Return a tuple of size two containing a start index and an end index
@@ -14,6 +15,7 @@ def index_range(page: int, page_size: int) -> tuple[int, int]:
     start_idx = (page - 1) * page_size
     end_idx = start_idx + page_size
     return start_idx, end_idx
+
 
 class Server:
     """Server class to paginate a database of popular baby.
@@ -59,4 +61,4 @@ class Server:
             "next_page": next_page,
             "prev_page": prev_page,
             "total_pages": total_pages
-        }
+            }
