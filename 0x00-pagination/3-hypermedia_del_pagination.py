@@ -16,8 +16,7 @@ class Server:
     def __init__(self):
         self.__dataset = None
         self.__indexed_dataset = None
-    
-    
+
     def dataset(self) -> List[List]:
         """Cached dataset
         """
@@ -28,7 +27,6 @@ class Server:
             self.__dataset = dataset[1:]
 
         return self.__dataset
-    
 
     def indexed_dataset(self) -> Dict[int, List]:
         """Dataset indexed by sorting position, starting at 0
@@ -40,7 +38,6 @@ class Server:
                 i: dataset[i] for i in range(len(dataset))
             }
         return self.__indexed_dataset
-    
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
@@ -52,7 +49,7 @@ class Server:
         assert (
                 isinstance(page_size, int) and page_size > 0
                ), "Page size must be a positive integer"
-        
+
         indexed_dataset = self.indexed_dataset()
         max_index = len(indexed_dataset) - 1
 
@@ -66,4 +63,4 @@ class Server:
             "next_index": next_index,
             "page_size": page_size,
             "data": [indexed_dataset[i] for i in range(index, next_index)]
-        }
+            }
