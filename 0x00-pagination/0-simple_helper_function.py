@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """tuple of size two containing a start index and an end index"""
 
+from typing import List, Tuple
+
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
