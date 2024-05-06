@@ -59,8 +59,8 @@ class Server:
     next_index = min(index + page_size, max_index + 1)
 
     return {
-        "index": index,
-        "next_index": next_index,
-        "page_size": page_size,
-        "data": [indexed_dataset[i] for i in range(index, next_index)]
-        }
+            "index": index,
+            "next_index": next_index,
+            "page_size": page_size,
+            "data": [indexed_dataset[i] for i in range(index, next_index)]
+    }
