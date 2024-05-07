@@ -6,7 +6,7 @@ from base_caching import BaseCaching
 
 class BasicCache(BaseCaching):
     """A caching system with no limit."""
-    
+
     def put(self, key, item):
         """Add an item to the cache."""
         if key is not None and item is not None:

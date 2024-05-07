@@ -3,10 +3,11 @@
 
 from base_caching import BaseCaching
 
+
 class LRUCache(BaseCaching):
     """A caching system that uses LRU (Least Recently Used)
       replacement policy."""
-    
+
     def __init__(self):
         """Initialize the LRUCache."""
         super().__init__()

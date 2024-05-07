@@ -3,10 +3,11 @@
 
 from base_caching import BaseCaching
 
+
 class LFUCache(BaseCaching):
     """A caching system that uses LFU (Least Frequently Used)
       replacement policy."""
-    
+
     def __init__(self):
         """Initialize the LFUCache."""
         super().__init__()

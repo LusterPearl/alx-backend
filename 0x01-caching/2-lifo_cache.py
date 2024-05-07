@@ -3,10 +3,11 @@
 
 from base_caching import BaseCaching
 
+
 class LIFOCache(BaseCaching):
     """A caching system that uses LIFO (Last-In, First-Out)
       replacement policy."""
-    
+
     def __init__(self):
         """Initialize the LIFOCache."""
         super().__init__()

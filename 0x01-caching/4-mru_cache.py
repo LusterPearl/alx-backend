@@ -3,10 +3,11 @@
 
 from base_caching import BaseCaching
 
+
 class MRUCache(BaseCaching):
     """A caching system that uses MRU (Most Recently Used)
       replacement policy."""
-    
+
     def __init__(self):
         """Initialize the MRUCache."""
         super().__init__()
