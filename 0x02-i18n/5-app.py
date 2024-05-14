@@ -15,6 +15,7 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 def get_user(user_id):
     """Retrieve a user from the mock database"""
     return users.get(user_id)
