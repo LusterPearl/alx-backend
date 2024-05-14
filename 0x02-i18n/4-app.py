@@ -21,7 +21,7 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    """Determine the best match with supported languages or use the forced locale."""
+    """Determine the best match with supported languages or use the forced."""
     forced_locale = request.args.get('locale')
     if forced_locale in app.config['LANGUAGES']:
         return forced_locale
@@ -33,6 +33,7 @@ def index():
     """Route for the index page"""
     current_time = datetime.now(pytz.utc)
     return render_template('4-index.html', current_time=current_time)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
