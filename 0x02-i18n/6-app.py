@@ -46,11 +46,11 @@ def get_locale():
     url_locale = request.args.get('locale')
     if url_locale in app.config['LANGUAGES']:
         return url_locale
-    
+
     """Priority 2: User settings"""
     if g.user and g.user.get('locale') in app.config['LANGUAGES']:
         return g.user['locale']
-    
+
     """Priority 3: Request header"""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
