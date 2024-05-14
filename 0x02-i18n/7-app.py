@@ -42,15 +42,15 @@ def before_request():
 
 @babel.localeselector
 def get_locale():
-    """Determine the best match with supported languages or use the forced locale."""
+    """Determine the best match with supported languags"""
     url_locale = request.args.get('locale')
     if url_locale in app.config['LANGUAGES']:
         return url_locale
-    
+
     """Priority 2: User settings"""
     if g.user and g.user.get('locale') in app.config['LANGUAGES']:
         return g.user['locale']
-    
+
     """Priority 3: Request header"""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
@@ -65,7 +65,7 @@ def get_timezone():
             return url_timezone
         except pytz.exceptions.UnknownTimeZoneError:
             pass
-    
+
     """Priority 2: User settings"""
     if g.user:
         user_timezone = g.user.get('timezone')
@@ -75,7 +75,7 @@ def get_timezone():
                 return user_timezone
             except pytz.exceptions.UnknownTimeZoneError:
                 pass
-    
+
     """Default to UTC"""
     return app.config['BABEL_DEFAULT_TIMEZONE']
 
