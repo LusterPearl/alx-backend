@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans %}Repo{% endtrans %}</title>
+</head>
+<body>
+    <p>{% if g.user %}{% trans %}logged_in_as{% endtrans %} {{ g.user['name'] }}.{% else %}{% trans %}not_logged_in{% endtrans %}.{% endif %}</p>
+    <p>{% trans %}GitHub repository: alx-backend{% endtrans %}</p>
+    <p>{% trans %}Directory: 0x02-i18n{% endtrans %}</p>
+    <p>{% trans %}File: 5-app.py, templates/5-index.html{% endtrans %}</p>
+</body>
+</html>
