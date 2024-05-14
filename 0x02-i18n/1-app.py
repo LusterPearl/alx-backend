@@ -7,8 +7,9 @@ from flask_babel import Babel
 class Config:
     """Configuration for Flask_Babel"""
     LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE ="en"
+    BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
