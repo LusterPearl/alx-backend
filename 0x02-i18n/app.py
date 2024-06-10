@@ -5,7 +5,9 @@ from flask_babel import Babel, gettext as _, format_datetime
 import pytz
 from datetime import datetime
 
+
 app = Flask(__name__)
+
 
 class Config:
     """Configuration for flask-babel"""
@@ -13,10 +15,10 @@ class Config:
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
+
 app.config.from_object(Config)
 babel = Babel(app)
 
-# Mock user database
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
@@ -24,9 +26,11 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 def get_user(user_id):
     """Retrieve a user from the mock database"""
     return users.get(user_id)
+
 
 @app.before_request
 def before_request():
@@ -34,25 +38,23 @@ def before_request():
     user_id = request.args.get('login_as')
     g.user = get_user(int(user_id)) if user_id else None
 
+
 @babel.localeselector
 def get_locale():
-    """Determine the best match with supported languages or use the forced locale."""
-    # Priority 1: URL parameter
+    """Determine the best match with supported languages"""
     url_locale = request.args.get('locale')
     if url_locale in app.config['LANGUAGES']:
         return url_locale
     
-    # Priority 2: User settings
     if g.user and g.user.get('locale') in app.config['LANGUAGES']:
         return g.user['locale']
     
-    # Priority 3: Request header
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 
 @babel.timezoneselector
 def get_timezone():
-    """Determine the best match for time zone or use the forced time zone."""
-    # Priority 1: URL parameter
+    """Determine the best match for time zone or use the forced"""
     url_timezone = request.args.get('timezone')
     if url_timezone:
         try:
@@ -60,8 +62,7 @@ def get_timezone():
             return url_timezone
         except pytz.exceptions.UnknownTimeZoneError:
             pass
-    
-    # Priority 2: User settings
+
     if g.user:
         user_timezone = g.user.get('timezone')
         if user_timezone:
@@ -70,9 +71,9 @@ def get_timezone():
                 return user_timezone
             except pytz.exceptions.UnknownTimeZoneError:
                 pass
-    
-    # Default to UTC
+
     return app.config['BABEL_DEFAULT_TIMEZONE']
+
 
 @app.route('/')
 def index():
@@ -83,6 +84,6 @@ def index():
     formatted_time = format_datetime(localized_time, locale=get_locale())
     return render_template('8-index.html', current_time=formatted_time)
 
+
 if __name__ == '__main__':
-    
     app.run(debug=True)
